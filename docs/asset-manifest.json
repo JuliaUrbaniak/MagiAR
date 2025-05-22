@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b44b6bb1.css",
+    "main.js": "/static/js/main.b89dddba.js",
+    "static/js/453.3fac2a8e.chunk.js": "/static/js/453.3fac2a8e.chunk.js",
+    "static/media/wizard.png": "/static/media/wizard.fef093bfebf339c3a926.png",
+    "static/media/spellbook.png": "/static/media/spellbook.61725f37b7f87a98d70e.png",
+    "static/media/MagiAR_logo.png": "/static/media/MagiAR_logo.d781fdb1fa9d681577a2.png",
+    "index.html": "/index.html",
+    "main.b44b6bb1.css.map": "/static/css/main.b44b6bb1.css.map",
+    "main.b89dddba.js.map": "/static/js/main.b89dddba.js.map",
+    "453.3fac2a8e.chunk.js.map": "/static/js/453.3fac2a8e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b44b6bb1.css",
+    "static/js/main.b89dddba.js"
+  ]
+}

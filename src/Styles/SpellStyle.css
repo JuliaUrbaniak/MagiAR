@@ -1,0 +1,138 @@
+.v-symbol path {
+  stroke-dasharray: 225;
+  stroke-dashoffset: 225;
+  animation: drawV 4s ease-in-out infinite;
+}
+
+@keyframes drawV {
+  from {
+    stroke-dashoffset: 225;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.protego path {
+  stroke-dasharray: 282.74;
+  stroke-dashoffset: 282.74;
+  animation: drawProtego 4s ease-in-out infinite;
+}
+
+@keyframes drawProtego {
+  from {
+    stroke-dashoffset: 282.74;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.fulmen path {
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  animation: drawFulmen 4s ease-in-out infinite;
+}
+
+@keyframes drawFulmen {
+  from {
+    stroke-dashoffset: 320;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.silencio line {
+  stroke-dasharray: 90;
+  stroke-dashoffset: 90;
+  animation: drawSilencio 4s ease-in-out infinite;
+}
+
+@keyframes drawSilencio {
+  /* from {
+    stroke-dashoffset: 90;
+  } */
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+.umbra path {
+  stroke-dasharray: 282.74;
+  stroke-dashoffset: 282.74;
+  animation: drawUmbra 4s ease-in-out infinite;
+}
+
+@keyframes drawUmbra {
+  from {
+    stroke-dashoffset: 282.74;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.ascensio path {
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  animation: drawAscensio 4s ease-in-out infinite;
+}
+
+@keyframes drawAscensio {
+  from {
+    stroke-dashoffset: 320;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.tenebrae path {
+  stroke-dasharray: 282.74;
+  stroke-dashoffset: 282.74;
+  animation: drawTenebrae 4s ease-in-out infinite;
+}
+
+@keyframes drawTenebrae {
+  from {
+    stroke-dashoffset: 282.74;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+.tempestas path {
+  stroke-dasharray: 282.74;
+  stroke-dashoffset: 282.74;
+  animation: drawTempestas 4s ease-in-out infinite;
+}
+
+@keyframes drawTempestas {
+  from {
+    stroke-dashoffset: 282.74;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.lux path {
+  stroke-dasharray: 282.74;
+  stroke-dashoffset: 282.74;
+  animation: drawLux 4s ease-in-out infinite;
+}
+
+@keyframes drawLux {
+  from {
+    stroke-dashoffset: 282.74;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+

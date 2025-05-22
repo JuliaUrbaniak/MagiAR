@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/JuliaUrbaniak/MagiAR.git/static/css/main.b44b6bb1.css",
-    "main.js": "/JuliaUrbaniak/MagiAR.git/static/js/main.472e41b4.js",
-    "static/js/453.3fac2a8e.chunk.js": "/JuliaUrbaniak/MagiAR.git/static/js/453.3fac2a8e.chunk.js",
-    "static/media/wizard.png": "/JuliaUrbaniak/MagiAR.git/static/media/wizard.fef093bfebf339c3a926.png",
-    "static/media/spellbook.png": "/JuliaUrbaniak/MagiAR.git/static/media/spellbook.61725f37b7f87a98d70e.png",
-    "static/media/MagiAR_logo.png": "/JuliaUrbaniak/MagiAR.git/static/media/MagiAR_logo.d781fdb1fa9d681577a2.png",
-    "index.html": "/JuliaUrbaniak/MagiAR.git/index.html",
-    "main.b44b6bb1.css.map": "/JuliaUrbaniak/MagiAR.git/static/css/main.b44b6bb1.css.map",
-    "main.472e41b4.js.map": "/JuliaUrbaniak/MagiAR.git/static/js/main.472e41b4.js.map",
-    "453.3fac2a8e.chunk.js.map": "/JuliaUrbaniak/MagiAR.git/static/js/453.3fac2a8e.chunk.js.map"
+    "main.css": "/MagiAR/static/css/main.b44b6bb1.css",
+    "main.js": "/MagiAR/static/js/main.354366d5.js",
+    "static/js/453.3fac2a8e.chunk.js": "/MagiAR/static/js/453.3fac2a8e.chunk.js",
+    "static/media/wizard.png": "/MagiAR/static/media/wizard.fef093bfebf339c3a926.png",
+    "static/media/spellbook.png": "/MagiAR/static/media/spellbook.61725f37b7f87a98d70e.png",
+    "static/media/MagiAR_logo.png": "/MagiAR/static/media/MagiAR_logo.d781fdb1fa9d681577a2.png",
+    "index.html": "/MagiAR/index.html",
+    "main.b44b6bb1.css.map": "/MagiAR/static/css/main.b44b6bb1.css.map",
+    "main.354366d5.js.map": "/MagiAR/static/js/main.354366d5.js.map",
+    "453.3fac2a8e.chunk.js.map": "/MagiAR/static/js/453.3fac2a8e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b44b6bb1.css",
-    "static/js/main.472e41b4.js"
+    "static/js/main.354366d5.js"
   ]
 }

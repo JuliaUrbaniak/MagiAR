@@ -36,7 +36,7 @@ function MainPage() {
 
   async function handleCalibration() {
     const image = captureFrame();
-    const response = await fetch('http://localhost:10000/kalibracja', {
+    const response = await fetch('https://magiar-backend.onrender.com/kalibracja', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ image }),
@@ -47,7 +47,7 @@ function MainPage() {
 
   async function handleCastSpell() {
     const image = captureFrame();
-    const response = await fetch('http://localhost:10000/zaklecie', {
+    const response = await fetch('https://magiar-backend.onrender.com/zaklecie', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ image }),

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate, HashRouter } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
@@ -39,7 +39,7 @@ function Home() {
           </div>
         </div>
 
-      <div className='d-flex justify-content-center text-center custom-mt-1 sticky-button-bottom mb-3'>
+      <div className='d-flex justify-content-center text-center custom-mt-1 mb-3'>
         <button className='buttonGetStarted text-white custom-mt-1' onClick={() => navigate("/getStartedSpellbook")}>
           GET STARTED
         </button>
@@ -54,7 +54,8 @@ function Home() {
 
 function App() {
   return (
-    <BrowserRouter>
+    // <BrowserRouter basename="/MagiAR">
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/getStartedSpellbook" element={<GetStartedSpellbook />} />
@@ -62,7 +63,8 @@ function App() {
         <Route path="/mainPage" element={<MainPage />} />
         <Route path="/spellbook" element={<Spellbook />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
+    // </BrowserRouter>
   );
 }
 

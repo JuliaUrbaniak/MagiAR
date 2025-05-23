@@ -34,9 +34,9 @@ function MainPage() {
         <HeaderMain />
       </div>
 
-      <div className='d-flex justify-content-center text-center mt-5'>
+      <div className='d-flex justify-content-center text-center mt-2 mt-lg-5'>
 
-        <video ref={videoRef} autoPlay playsInline muted className="w-75 custom-video" />
+        <video ref={videoRef} autoPlay playsInline muted className="custom-video mb-4" />
 
       </div>
 

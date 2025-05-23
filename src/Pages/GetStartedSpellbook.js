@@ -35,7 +35,7 @@ function GetStartedSpellbook() {
         </div>
       </div>
 
-      <div className='d-flex justify-content-center text-center custom-mt-1 sticky-button-bottom mb-3'>
+      <div className='d-flex justify-content-center text-center custom-mt-1 mb-3'>
         <button className='buttonGetStarted text-white custom-mt-1' onClick={() => navigate("/getStartedCalibrate")}>
           NEXT
         </button>

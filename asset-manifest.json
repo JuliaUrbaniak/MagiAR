@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/MagiAR/static/css/main.609ba752.css",
-    "main.js": "/MagiAR/static/js/main.adb3a405.js",
+    "main.css": "/MagiAR/static/css/main.40ab77cd.css",
+    "main.js": "/MagiAR/static/js/main.8b44c44e.js",
     "static/js/453.3fac2a8e.chunk.js": "/MagiAR/static/js/453.3fac2a8e.chunk.js",
     "static/media/wizard.png": "/MagiAR/static/media/wizard.fef093bfebf339c3a926.png",
     "static/media/spellbook.png": "/MagiAR/static/media/spellbook.61725f37b7f87a98d70e.png",
     "static/media/MagiAR_logo.png": "/MagiAR/static/media/MagiAR_logo.d781fdb1fa9d681577a2.png",
     "index.html": "/MagiAR/index.html",
-    "main.609ba752.css.map": "/MagiAR/static/css/main.609ba752.css.map",
-    "main.adb3a405.js.map": "/MagiAR/static/js/main.adb3a405.js.map",
+    "main.40ab77cd.css.map": "/MagiAR/static/css/main.40ab77cd.css.map",
+    "main.8b44c44e.js.map": "/MagiAR/static/js/main.8b44c44e.js.map",
     "453.3fac2a8e.chunk.js.map": "/MagiAR/static/js/453.3fac2a8e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.609ba752.css",
-    "static/js/main.adb3a405.js"
+    "static/css/main.40ab77cd.css",
+    "static/js/main.8b44c44e.js"
   ]
 }

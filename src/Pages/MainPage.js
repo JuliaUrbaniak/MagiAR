@@ -9,6 +9,7 @@ import '../App.css';
 
 function MainPage() {
   const videoRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Uzyskaj dostęp do kamery
@@ -24,26 +25,59 @@ function MainPage() {
       });
   }, []);
 
-    const navigate = useNavigate();
+  function captureFrame() {
+    const video = videoRef.current;
+    const canvas = document.createElement('canvas');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext('2d').drawImage(video, 0, 0);
+    return canvas.toDataURL('image/jpeg');
+  }
+
+  async function handleCalibration() {
+    const image = captureFrame();
+    const response = await fetch('http://localhost:5000/kalibracja', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ image }),
+    });
+    const data = await response.json();
+    alert(`Threshold ustawiony: ${data.threshold}`);
+  }
+
+  async function handleCastSpell() {
+    const image = captureFrame();
+    const response = await fetch('http://localhost:5000/zaklecie', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ image }),
+    });
+    const data = await response.json();
+    alert(`Zaklęcie wykryte: ${data.zaklecie}`);
+  }
+
   return (
     <>
+      <div className='container'>
 
-    <div className='container'>
+        <div className="row">
+          <HeaderMain />
+        </div>
 
-      <div className="row">
-        <HeaderMain />
+        <div className='d-flex flex-column align-items-center text-center mt-2 mt-lg-5'>
+
+          <video ref={videoRef} autoPlay playsInline muted className="custom-video mb-4" />
+
+          <div className="d-flex gap-3">
+            <button onClick={handleCalibration} className="btn btn-primary">Kalibracja</button>
+            <button onClick={handleCastSpell} className="btn btn-success">Rzuć zaklęcie</button>
+          </div>
+
+        </div>
+
       </div>
-
-      <div className='d-flex justify-content-center text-center mt-2 mt-lg-5'>
-
-        <video ref={videoRef} autoPlay playsInline muted className="custom-video mb-4" />
-
-      </div>
-
-    </div>
-
-
     </>
   );
 }
+
 export default MainPage;

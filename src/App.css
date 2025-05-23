@@ -1,4 +1,16 @@
 /* Style CSS dla całej strony */
+@keyframes fadeScale {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+
 body {
   background-color: #000000 !important; /* dowolny kolor */
   margin: 0;
@@ -39,13 +51,13 @@ body {
     filter: invert(100%);
   }
   .center-nav {
-  margin-left: auto !important;
-  margin-right: auto !important;
-  display: flex !important;
-  justify-content: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: flex !important;
+    justify-content: center !important;
   }
   .navbar-toggler:focus {
-  box-shadow: 0 0 0 3px rgb(195, 125, 208); 
+    box-shadow: 0 0 0 3px rgb(195, 125, 208);
   }
 
 }
@@ -108,7 +120,7 @@ body {
     border-radius: 8px;
     font-size: 1.2rem !important;
   }
-    .brightVioletBoxApp img{
+  .brightVioletBoxApp img{
     width: 100%;
   }
 }
@@ -123,7 +135,7 @@ body {
     border-radius: 8px;
     font-size: 1.2rem !important;
   }
-    .brightVioletBoxApp img{
+  .brightVioletBoxApp img{
     width: 100%;
   }
 }

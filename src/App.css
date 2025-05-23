@@ -65,6 +65,9 @@ body {
 }
 @media (min-width: 1600px) {
   .custom-mt-1 {
+    margin-top: 4rem !important;
+  }
+  .custom-mt-2 {
     margin-top: 5rem !important;
   }
   .custom-video{

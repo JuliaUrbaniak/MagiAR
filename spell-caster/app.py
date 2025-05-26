@@ -51,7 +51,6 @@ def extract_points_from_frames(frames):
         if regions:
             largest_region = max(regions, key=lambda r: r.area)
             result_frames.append(largest_region.centroid)
-            print(largest_region.bbox)
 
     return result_frames
 
@@ -77,7 +76,9 @@ def zaklecie():
     for i in range(1, len(points)):
         x1, y1 = points[i - 1]
         x2, y2 = points[i]
-        vectors.append([x2 - x1, y2 - y1])
+        diff = [x2 - x1, y2 - y1]
+        print(diff)
+        vectors.append(diff)
 
 
     padded = pad_sequences([vectors], maxlen=SEQUENCE_LENGTH, dtype='float32', padding='post', truncating='post')

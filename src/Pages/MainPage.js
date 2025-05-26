@@ -122,8 +122,7 @@ function MainPage() {
 
             const image = captureFrame();
 
-            // Tutaj wywołanie funkcji do kalibracji
-            /*
+
             const response = await fetch('https://magiar-backend.onrender.com/kalibracja', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -131,7 +130,7 @@ function MainPage() {
             });
             const data = await response.json();
             alert(`Threshold ustawiony: ${data.threshold}`);
-            */
+
           }, 1000);
         }, 150); // flash trwa 150 ms
       }

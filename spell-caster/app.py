@@ -86,7 +86,11 @@ def zaklecie():
     prediction = model.predict(padded)
     predicted_class = SPELL_CLASSES[int(np.argmax(prediction))]
 
+    del frames
+    del frame_strings
+
     return jsonify({"zaklecie": predicted_class})
+
 
 
 if __name__ == '__main__':

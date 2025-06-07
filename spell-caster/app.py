@@ -75,9 +75,9 @@ def extract_points_from_frames(frames):
     for frame in frames:
         r_image = np.where(((frame[:, :, 2] <= threshold["r_high"]) & (frame[:, :, 2] >= threshold["r_low"])),
                            frame[:, :, 2], 0)
-        g_image = np.where(((frame[:, :, 1] <= threshold["g_low"]) & (frame[:, :, 1] >= threshold["g_high"])),
+        g_image = np.where(((frame[:, :, 1] <= threshold["g_high"]) & (frame[:, :, 1] >= threshold["g_low"])),
                            frame[:, :, 1], 0)
-        b_image = np.where(((frame[:, :, 0] <= threshold["b_high"]) & (frame[:, :, 0] >= threshold["b_high"])),
+        b_image = np.where(((frame[:, :, 0] <= threshold["b_high"]) & (frame[:, :, 0] >= threshold["b_low"])),
                            frame[:, :, 0], 0)
         combined = (r_image & b_image & g_image)
         combined = (combined > 0).astype(np.uint8) * 255

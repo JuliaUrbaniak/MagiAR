@@ -19,6 +19,12 @@ model = tf.keras.models.load_model("Models/best_model.h5")
 app = Flask(__name__)
 CORS(app)
 
+threshold = {
+    "r_low": 234, "r_high": 245,
+    "g_low": 89, "g_high": 106,
+    "b_low": 120, "b_high": 133
+}
+
 
 def decode_image(base64_string):
     """Dekoduje obraz z base64 do formatu OpenCV (numpy array)."""
@@ -31,17 +37,48 @@ def decode_image(base64_string):
 @app.route('/kalibracja', methods=['POST'])
 def kalibracja():
     image = decode_image(request.json['image'])
-    # Tutaj można wykryć kolor lasera i wyliczyć próg HSV
-    print("Klatka do kalibracji otrzymana.")
-    return jsonify({"threshold": 127})  # Przykładowy próg
+
+    height, width = image.shape[:2]
+    center = (width // 2, height // 2)
+    outer_radius = 50
+    border_width = 4
+    inner_radius = outer_radius - border_width
+    mask = np.zeros((height, width), dtype=np.uint8)
+
+    mask = np.zeros((height, width), dtype=np.uint8)
+    cv2.circle(mask, center, outer_radius, 255, -1)
+    cv2.circle(mask, center, inner_radius, 0, -1)
+
+    image_f = image.astype(np.float32)
+
+    pixels = image_f[mask == 255]
+
+    mean = np.mean(pixels, axis=0)
+    stddev = np.std(pixels, axis=0)
+
+    mean_rgb = mean[::-1]
+    stddev_rgb = stddev[::-1]
+
+    threshold["r_low"] = mean_rgb[2] - (stddev_rgb[2] // 2)
+    threshold["r_high"] = mean_rgb[2] + (stddev_rgb[2] // 2)
+    threshold["g_low"] = mean_rgb[1] - (stddev_rgb[1] // 2)
+    threshold["g_high"] = mean_rgb[1] - (stddev_rgb[1] // 2)
+    threshold["b_low"] = mean_rgb[0] - (stddev_rgb[0] // 2)
+    threshold["b_high"] = mean_rgb[0] - (stddev_rgb[0] // 2)
+
+
+    return jsonify({threshold})
 
 
 def extract_points_from_frames(frames):
     result_frames = []
     for frame in frames:
-        r_image = np.where(((frame[:, :, 2] <= 245.25) & (frame[:, :, 2] >= 234.2)), frame[:, :, 2], 0)
-        g_image = np.where(((frame[:, :, 1] <= 106.01) & (frame[:, :, 1] >= 89.75)), frame[:, :, 1], 0)
-        b_image = np.where(((frame[:, :, 0] <= 133.82) & (frame[:, :, 0] >= 120.3)), frame[:, :, 0], 0)
+        r_image = np.where(((frame[:, :, 2] <= threshold["r_high"]) & (frame[:, :, 2] >= threshold["r_low"])),
+                           frame[:, :, 2], 0)
+        g_image = np.where(((frame[:, :, 1] <= threshold["g_low"]) & (frame[:, :, 1] >= threshold["g_high"])),
+                           frame[:, :, 1], 0)
+        b_image = np.where(((frame[:, :, 0] <= threshold["b_high"]) & (frame[:, :, 0] >= threshold["b_high"])),
+                           frame[:, :, 0], 0)
         combined = (r_image & b_image & g_image)
         combined = (combined > 0).astype(np.uint8) * 255
 
@@ -53,6 +90,7 @@ def extract_points_from_frames(frames):
             result_frames.append(largest_region.centroid)
 
     return result_frames
+
 
 @app.route('/zaklecie', methods=['POST'])
 def zaklecie():
@@ -80,7 +118,6 @@ def zaklecie():
         print(diff)
         vectors.append(diff)
 
-
     padded = pad_sequences([vectors], maxlen=SEQUENCE_LENGTH, dtype='float32', padding='post', truncating='post')
 
     prediction = model.predict(padded)
@@ -90,7 +127,6 @@ def zaklecie():
     del frame_strings
 
     return jsonify({"zaklecie": predicted_class})
-
 
 
 if __name__ == '__main__':

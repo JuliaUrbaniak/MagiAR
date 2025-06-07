@@ -5,10 +5,10 @@ from flask_cors import CORS
 import base64
 import numpy as np
 import cv2
-
 import tensorflow as tf
 from keras_preprocessing.sequence import pad_sequences
 from skimage.measure import label, regionprops
+import gc
 
 SPELL_CLASSES = ["Glacius_V", "Ignis_A", "Protego_O", "Fulmen_Triangle", "Silencio_Line_Horizontal",
                  "Umbra_Bowl", "Ascensio_Line_Vertical", "Tenebrae_C", "Tempestas_7", "Lux_L"]
@@ -98,9 +98,8 @@ def zaklecie():
     data = request.json
     frame_strings = data.get("frames", [])
 
-    print("Otrzymano polecenie zaklecia", flush=True)
     if not frame_strings:
-        print("Brak klatek")
+        print("Brak klatek", flush=True)
         return jsonify({"error": "Brak klatek"}), 400
 
     print(f"📥 Otrzymano {len(frame_strings)} klatek", flush=True)
@@ -119,7 +118,6 @@ def zaklecie():
         x1, y1 = points[i - 1]
         x2, y2 = points[i]
         diff = [x2 - x1, y2 - y1]
-        print(diff)
         vectors.append(diff)
 
     padded = pad_sequences([vectors], maxlen=SEQUENCE_LENGTH, dtype='float32', padding='post', truncating='post')
@@ -129,6 +127,12 @@ def zaklecie():
 
     del frames
     del frame_strings
+    del points
+    del vectors
+    del padded
+    del prediction
+
+    gc.collect()
 
     return jsonify({"zaklecie": predicted_class})
 

@@ -66,7 +66,7 @@ def kalibracja():
     threshold["b_high"] = float(mean_rgb[2] + (stddev_rgb[2] / 2))
 
 
-    return jsonify({threshold})
+    return jsonify({"threshold": threshold})
 
 
 def extract_points_from_frames(frames):

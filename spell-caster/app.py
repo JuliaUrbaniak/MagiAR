@@ -14,7 +14,6 @@ SPELL_CLASSES = ["Glacius_V", "Ignis_A", "Protego_O", "Fulmen_Triangle", "Silenc
                  "Umbra_Bowl", "Ascensio_Line_Vertical", "Tenebrae_C", "Tempestas_7", "Lux_L"]
 
 SEQUENCE_LENGTH = 60
-model = tf.keras.models.load_model("Models/best_model.h5")
 
 app = Flask(__name__)
 CORS(app)
@@ -94,6 +93,7 @@ def extract_points_from_frames(frames):
 
 @app.route('/zaklecie', methods=['POST'])
 def zaklecie():
+    model = tf.keras.models.load_model("Models/best_model.h5")
     print("Otrzymano polecenie zaklecia", flush=True)
     data = request.json
     frame_strings = data.get("frames", [])
@@ -125,12 +125,7 @@ def zaklecie():
     prediction = model.predict(padded)
     predicted_class = SPELL_CLASSES[int(np.argmax(prediction))]
 
-    del frames
-    del frame_strings
-    del points
-    del vectors
-    del padded
-    del prediction
+    del frames, frame_strings, points, vectors, padded, prediction
 
     gc.collect()
 

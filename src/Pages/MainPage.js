@@ -129,7 +129,7 @@ function MainPage() {
                             body: JSON.stringify({image}),
                         });
                         const data = await response.json();
-                        alert(`Threshold ustawiony: ${data.threshold}`);
+                        alert(`Dane z backendu:\n${JSON.stringify(data, null, 2)}`);
 
                     }, 1000);
                 }, 150); // flash trwa 150 ms

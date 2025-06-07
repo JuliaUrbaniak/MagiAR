@@ -36,6 +36,7 @@ def decode_image(base64_string):
 
 @app.route('/kalibracja', methods=['POST'])
 def kalibracja():
+    print("Kalibracja", flush=True)
     image = decode_image(request.json['image'])
 
     height, width = image.shape[:2]
@@ -93,16 +94,16 @@ def extract_points_from_frames(frames):
 
 @app.route('/zaklecie', methods=['POST'])
 def zaklecie():
-    print("Otrzymano polecenie zaklecia")
+    print("Otrzymano polecenie zaklecia", flush=True)
     data = request.json
     frame_strings = data.get("frames", [])
 
-    print("Otrzymano polecenie zaklecia")
+    print("Otrzymano polecenie zaklecia", flush=True)
     if not frame_strings:
         print("Brak klatek")
         return jsonify({"error": "Brak klatek"}), 400
 
-    print(f"📥 Otrzymano {len(frame_strings)} klatek")
+    print(f"📥 Otrzymano {len(frame_strings)} klatek", flush=True)
 
     # Dekodujemy wszystkie klatki
     frames = [decode_image(b64) for b64 in frame_strings]
@@ -110,7 +111,7 @@ def zaklecie():
     points = extract_points_from_frames(frames)
 
     if len(points) < 10:
-        print("Za mało punktów")
+        print("Za mało punktów", flush=True)
         return jsonify({"error": "Za mało punktów"}), 400
 
     vectors = []

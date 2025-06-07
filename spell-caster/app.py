@@ -97,6 +97,7 @@ def zaklecie():
     frame_strings = data.get("frames", [])
 
     if not frame_strings:
+        print("Brak klatek")
         return jsonify({"error": "Brak klatek"}), 400
 
     print(f"📥 Otrzymano {len(frame_strings)} klatek")
@@ -107,6 +108,7 @@ def zaklecie():
     points = extract_points_from_frames(frames)
 
     if len(points) < 10:
+        print("Za mało punktów")
         return jsonify({"error": "Za mało punktów"}), 400
 
     vectors = []

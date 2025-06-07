@@ -43,7 +43,6 @@ def kalibracja():
     outer_radius = 50
     border_width = 4
     inner_radius = outer_radius - border_width
-    mask = np.zeros((height, width), dtype=np.uint8)
 
     mask = np.zeros((height, width), dtype=np.uint8)
     cv2.circle(mask, center, outer_radius, 255, -1)
@@ -59,12 +58,12 @@ def kalibracja():
     mean_rgb = mean[::-1]
     stddev_rgb = stddev[::-1]
 
-    threshold["r_low"] = mean_rgb[2] - (stddev_rgb[2] // 2)
-    threshold["r_high"] = mean_rgb[2] + (stddev_rgb[2] // 2)
-    threshold["g_low"] = mean_rgb[1] - (stddev_rgb[1] // 2)
-    threshold["g_high"] = mean_rgb[1] - (stddev_rgb[1] // 2)
-    threshold["b_low"] = mean_rgb[0] - (stddev_rgb[0] // 2)
-    threshold["b_high"] = mean_rgb[0] - (stddev_rgb[0] // 2)
+    threshold["r_low"] = float(mean_rgb[0] - (stddev_rgb[0] / 2))
+    threshold["r_high"] = float(mean_rgb[0] + (stddev_rgb[0] / 2))
+    threshold["g_low"] = float(mean_rgb[1] - (stddev_rgb[1] / 2))
+    threshold["g_high"] = float(mean_rgb[1] + (stddev_rgb[1] / 2))
+    threshold["b_low"] = float(mean_rgb[2] - (stddev_rgb[2] / 2))
+    threshold["b_high"] = float(mean_rgb[2] + (stddev_rgb[2] / 2))
 
 
     return jsonify({threshold})

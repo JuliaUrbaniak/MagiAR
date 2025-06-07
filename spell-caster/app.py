@@ -20,9 +20,9 @@ app = Flask(__name__)
 CORS(app)
 
 threshold = {
-    "r_low": 234, "r_high": 245,
-    "g_low": 89, "g_high": 106,
-    "b_low": 120, "b_high": 133
+    "r_low": 234.0, "r_high": 245.0,
+    "g_low": 89.0, "g_high": 106.0,
+    "b_low": 120.0, "b_high": 133.0
 }
 
 
@@ -93,9 +93,11 @@ def extract_points_from_frames(frames):
 
 @app.route('/zaklecie', methods=['POST'])
 def zaklecie():
+    print("Otrzymano polecenie zaklecia")
     data = request.json
     frame_strings = data.get("frames", [])
 
+    print("Otrzymano polecenie zaklecia")
     if not frame_strings:
         print("Brak klatek")
         return jsonify({"error": "Brak klatek"}), 400

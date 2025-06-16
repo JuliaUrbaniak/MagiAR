@@ -66,7 +66,7 @@ def kalibracja():
     threshold["b_low"] = float(mean_rgb[2] - (stddev_rgb[2] / 2))
     threshold["b_high"] = float(mean_rgb[2] + (stddev_rgb[2] / 2))
 
-    return jsonify({"threshold": "Calibration process completed successfully!"})
+    return jsonify("Calibration process completed successfully!")
     # return jsonify({"threshold": threshold})
 
 

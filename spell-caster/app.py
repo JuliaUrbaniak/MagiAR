@@ -14,7 +14,7 @@ SPELL_CLASSES = ["Glacius_V", "Ignis_A", "Protego_O", "Fulmen_Triangle", "Silenc
                  "Umbra_Bowl", "Ascensio_Line_Vertical", "Tenebrae_C", "Tempestas_7", "Lux_L"]
 
 SEQUENCE_LENGTH = 60
-model = tf.keras.models.load_model("Models/MagiaAR_learn_latest.h5")
+model = tf.keras.models.load_model("Models/best_model.h5")
 
 app = Flask(__name__)
 CORS(app)

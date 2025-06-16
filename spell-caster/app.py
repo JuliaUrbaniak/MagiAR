@@ -14,7 +14,7 @@ SPELL_CLASSES = ["Glacius_V", "Ignis_A", "Protego_O", "Fulmen_Triangle", "Silenc
                  "Umbra_Bowl", "Ascensio_Line_Vertical", "Tenebrae_C", "Tempestas_7", "Lux_L"]
 
 SEQUENCE_LENGTH = 60
-model = tf.keras.models.load_model("Models/best_model.h5")
+model = tf.keras.models.load_model("Models/MagiaAR_learn_latest.keras")
 
 app = Flask(__name__)
 CORS(app)
@@ -66,8 +66,8 @@ def kalibracja():
     threshold["b_low"] = float(mean_rgb[2] - (stddev_rgb[2] / 2))
     threshold["b_high"] = float(mean_rgb[2] + (stddev_rgb[2] / 2))
 
-
-    return jsonify({"threshold": threshold})
+    return jsonify({"threshold": "Calibration process completed successfully!"})
+    # return jsonify({"threshold": threshold})
 
 
 def extract_points_from_frames(frames):

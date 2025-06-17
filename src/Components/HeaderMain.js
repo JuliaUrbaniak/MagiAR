@@ -28,6 +28,9 @@ function HeaderMain() {
           </div>
 
           <div className="col-lg-4 d-flex justify-content-end align-items-center">
+            <button className="buttonCalibrate" onClick={() => navigate("/calibrate")}>
+              CALIBRATE
+            </button>
           </div>
         </div>
       </header>
@@ -50,6 +53,9 @@ function HeaderMain() {
               </Nav.Link>
               <Nav.Link>
                 <div className="d-flex justify-content-center align-items-center">
+                <button className='buttonCalibrate'>
+                    CALIBRATE
+                </button>
                 </div>
               </Nav.Link>
             </Nav>

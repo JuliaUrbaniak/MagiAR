@@ -73,16 +73,16 @@ function MainPage() {
 
 
     useEffect(() => {
-        // Uzyskaj dostęp do kamery
+        // Get camera access
         navigator.mediaDevices.getUserMedia({video: true})
             .then((stream) => {
-                // Ustaw strumień jako źródło dla elementu <video>
+                // Set stream as video source
                 if (videoRef.current) {
                     videoRef.current.srcObject = stream;
                 }
             })
             .catch((err) => {
-                console.error("Błąd podczas uzyskiwania dostępu do kamery:", err);
+                console.error("Error accessing camera:", err);
             });
     }, []);
 
@@ -115,13 +115,11 @@ function MainPage() {
 
                 setTimeout(() => {
                     setFlash(false);
-                    //setShowScanningText(true);
 
                     setTimeout(async () => {
                         setShowScanningText(false);
 
                         const image = captureFrame();
-
 
                         const response = await fetch('https://magiar-backend.onrender.com/kalibracja', {
                             method: 'POST',
@@ -129,12 +127,12 @@ function MainPage() {
                             body: JSON.stringify({image}),
                         });
                         const data = await response.json();
-                        alert(`Dane z backendu:\n${JSON.stringify(data, null, 2)}`);
+                        alert(`${JSON.stringify(data, null, 2)}`);
 
                     }, 1000);
-                }, 150); // flash trwa 150 ms
+                }, 150); // flash lasts 150 ms
             }
-        }, 1000); //
+        }, 1000);
     }
 
     async function sendFramesToBackend(frames) {
@@ -142,22 +140,22 @@ function MainPage() {
             const response = await fetch('https://magiar-backend.onrender.com/zaklecie', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({frames}), // wysyłamy tablicę
+                body: JSON.stringify({frames}),
             });
 
             const data = await response.json();
             if (data?.zaklecie) {
                 setDetectedSpell(data.zaklecie);
-                console.log("🧙 Zaklęcie wykryte:", data.zaklecie);
+                console.log("🧙 Spell detected:", data.zaklecie);
 
                 setTimeout(() => {
                     setDetectedSpell(null);
                 }, 4000);
             } else {
-                console.log("😶 Nie wykryto zaklęcia.");
+                console.log("😶 No spell detected.");
             }
         } catch (error) {
-            console.error("❌ Błąd wysyłania klatek:", error);
+            console.error("❌ Error sending frames:", error);
         }
     }
 
@@ -185,7 +183,7 @@ function MainPage() {
                         clearInterval(frameInterval);
                         setShowCastingText(false);
 
-                        // Wysłanie wszystkich zebranych klatek do backendu
+                        // Send all collected frames to backend
                         sendFramesToBackend(frames);
                         return;
                     }
@@ -197,11 +195,9 @@ function MainPage() {
         }, 1000);
     }
 
-
     return (
         <>
             <div className='container'>
-
                 <div className="row">
                     <HeaderMain/>
                 </div>
@@ -232,28 +228,7 @@ function MainPage() {
                         </div>
                     )}
 
-
-                    {/*{detectedSpell && (*/}
-                    {/*    <div style={{*/}
-                    {/*      position: 'absolute',*/}
-                    {/*      top: '10%',*/}
-                    {/*      left: '50%',*/}
-                    {/*      transform: 'translateX(-50%)',*/}
-                    {/*      color: 'rgb(255, 215, 0)',*/}
-                    {/*      fontSize: '3rem',*/}
-                    {/*      fontWeight: 'bold',*/}
-                    {/*      textShadow: '2px 2px 8px black',*/}
-                    {/*      backgroundColor: 'rgba(0,0,0,0.6)',*/}
-                    {/*      padding: '10px 25px',*/}
-                    {/*      borderRadius: '10px',*/}
-                    {/*      zIndex: 3*/}
-                    {/*    }}>*/}
-                    {/*      {detectedSpell.replace(/_/g, ' ')}*/}
-                    {/*    </div>*/}
-                    {/*)}*/}
-
-
-                    {/* Odliczanie przed czarowaniem */}
+                    {/* Countdown before casting */}
                     {castingCountdown !== null && (
                         <div style={{
                             position: 'absolute',
@@ -272,7 +247,7 @@ function MainPage() {
                         </div>
                     )}
 
-                    {/* Tekst "CZARUJ!" */}
+                    {/* "CAST!" text */}
                     {showCastingText && (
                         <div style={{
                             position: 'absolute',
@@ -285,12 +260,11 @@ function MainPage() {
                             textShadow: '2px 2px 10px black',
                             zIndex: 3
                         }}>
-                            CZARUJ!
+                            CAST!
                         </div>
                     )}
 
-
-                    {/* Błysk */}
+                    {/* Flash */}
                     {flash && (
                         <div style={{
                             position: 'absolute',
@@ -304,7 +278,7 @@ function MainPage() {
                         }}/>
                     )}
 
-                    {/* Kalibrowanie */}
+                    {/* Calibrating */}
                     {showScanningText && (
                         <div style={{
                             position: 'absolute',
@@ -319,13 +293,13 @@ function MainPage() {
                             borderRadius: '10px',
                             zIndex: 3
                         }}>
-                            Kalibrowanie...
+                            Calibrating...
                         </div>
                     )}
 
                     <video ref={videoRef} autoPlay playsInline muted className="custom-video mb-4"/>
 
-                    {/* Kółko i odliczanie */}
+                    {/* Circle and countdown */}
                     {calibrating && (
                         <>
                             <div style={{
@@ -358,13 +332,49 @@ function MainPage() {
                         </>
                     )}
 
-                    <div className="d-flex gap-3">
-                        <button onClick={handleCalibration} className="btn btn-primary">Kalibracja</button>
-                        <button onClick={handleCastSpell} className="btn btn-success">Rzuć zaklęcie</button>
+                    <div className="d-flex gap-3 mb-4">
+                        <button
+                            onClick={handleCalibration}
+                            className="btn btn-primary"
+                            style={{
+                                backgroundColor: '#9c27b0',
+                                border: 'none',
+                                borderRadius: '20px',
+                                padding: '10px 20px',
+                                fontSize: '1rem',
+                                fontWeight: '600',
+                                color: 'white',
+                                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                                transition: 'all 0.3s ease',
+                                minWidth: '150px'
+                            }}
+                            onMouseOver={(e) => e.target.style.transform = 'translateY(-2px)'}
+                            onMouseOut={(e) => e.target.style.transform = 'translateY(0)'}
+                        >
+                            Calibrate
+                        </button>
+                        <button
+                            onClick={handleCastSpell}
+                            className="btn btn-success"
+                            style={{
+                                backgroundColor: '#4caf50',
+                                border: 'none',
+                                borderRadius: '20px',
+                                padding: '10px 20px',
+                                fontSize: '1rem',
+                                fontWeight: '600',
+                                color: 'white',
+                                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                                transition: 'all 0.3s ease',
+                                minWidth: '150px'
+                            }}
+                            onMouseOver={(e) => e.target.style.transform = 'translateY(-2px)'}
+                            onMouseOut={(e) => e.target.style.transform = 'translateY(0)'}
+                        >
+                            Cast Spell
+                        </button>
                     </div>
                 </div>
-
-
             </div>
         </>
     );

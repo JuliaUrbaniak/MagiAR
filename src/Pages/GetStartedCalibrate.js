@@ -28,7 +28,7 @@ function GetStartedCalibrate() {
                 <p className='text-white m-0'>
                     This is the calibration button. 
                     Every wand has unique parameters that need to be calibrated so you can properly train your spellcasting. 
-                    At the start of each spellcasting session, tap this button and point your wand’s laser at the designated square to calibrate. 
+                    At the start of each spellcasting session, tap this button and point your wand’s laser at the designated circle to calibrate.
                     If your wand starts losing power while casting spells, simply recalibrate it by repeating the process.
                 </p>
             </div>

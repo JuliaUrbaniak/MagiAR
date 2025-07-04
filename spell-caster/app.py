@@ -8,6 +8,7 @@ import cv2
 import tensorflow as tf
 from keras_preprocessing.sequence import pad_sequences
 from skimage.measure import label, regionprops
+from skimage.morphology import closing, disk
 import gc
 
 SPELL_CLASSES = ["Glacius_V", "Ignis_A", "Protego_O", "Fulmen_Triangle", "Silencio_Line_Horizontal",
@@ -81,6 +82,7 @@ def extract_points_from_frames(frames):
                            frame[:, :, 0], 0)
         combined = (r_image & b_image & g_image)
         combined = (combined > 0).astype(np.uint8) * 255
+        combined = closing(combined, disk(5))
 
         labeled_image = label(combined)
         regions = regionprops(labeled_image)
